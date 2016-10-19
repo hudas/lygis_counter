@@ -16,11 +16,10 @@ public class Hospital {
 
     public void treatPatient() {
         sickWithFlu.adjust();
-        System.out.println(String.format("Gripu sergantis pacientas atėjo į polikliniką, šiuo metu serga: %d asmenys", sickWithFlu.read()));
     }
 
     public void notifyEpidemy() {
         sickWithFlu.await(FLU_EPIDEMY);
-        System.out.println(String.format("Gripu serga daugiau nei: %d asmenų skelbiama epidemija."));
+        System.out.println(String.format("Gripu serga daugiau nei: %d asmenų skelbiama epidemija.", sickWithFlu.read()));
     }
 }

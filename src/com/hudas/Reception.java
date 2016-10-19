@@ -5,22 +5,23 @@ package com.hudas;
  */
 public class Reception extends Thread {
 
-    public static final int PATIENTS_AT_RECEPTION = 100;
+    public static final int PATIENTS_AT_RECEPTION = 1000;
     private Hospital hospital;
-    private int receptionNumber;
 
-
-    public Reception(Hospital hospital, int number) {
+    public Reception(Hospital hospital) {
         this.hospital = hospital;
-        this.receptionNumber = number;
     }
 
     @Override
     public void run(){
-
         for(int i = 0; i < PATIENTS_AT_RECEPTION; i++) {
             hospital.treatPatient();
-            System.out.println(String.format("Registratūroje nr. %d užsiregistravo asmuo %d ", receptionNumber, i + 1));
+
+            try {
+                Thread.currentThread().sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

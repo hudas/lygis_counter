@@ -13,13 +13,14 @@ public class HealthInspection extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Inspekcija pradeda darbą.");
 
-        while (true) {
-
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Reporting...");
             hospital.getReport();
 
             try {
-                Thread.currentThread().sleep(100);
+                Thread.currentThread().sleep(10);
             } catch (InterruptedException e) {
                 System.out.println("Sistema baigia darbą, klaida laukiant ataskaitos");
             }

@@ -6,7 +6,8 @@ package com.hudas;
  */
 public class Hospital {
 
-    private static final int FLU_EPIDEMY = 10;
+    private static final int FLU_EPIDEMY = 250;
+
 
     private Counter sickWithFlu = new Counter();
 
@@ -19,6 +20,8 @@ public class Hospital {
     }
 
     public void notifyEpidemy() {
+        System.out.println("Laukiama epidemijos...");
+
         sickWithFlu.await(FLU_EPIDEMY);
         System.out.println(String.format("Gripu serga daugiau nei: %d asmenų skelbiama epidemija.", sickWithFlu.read()));
     }

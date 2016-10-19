@@ -8,6 +8,7 @@ public class HealthInspection extends Thread {
     private Hospital hospital;
 
     public HealthInspection(Hospital hospital) {
+        System.out.println("Inspekcija pradeda darbą.");
         this.hospital = hospital;
     }
 
@@ -16,7 +17,6 @@ public class HealthInspection extends Thread {
         System.out.println("Inspekcija pradeda darbą.");
 
         for (int i = 0; i < 10; i++) {
-            System.out.println("Reporting...");
             hospital.getReport();
 
             try {

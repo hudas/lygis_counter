@@ -7,28 +7,35 @@ public class Counter {
 
     private int value;
 
-    synchronized public int read() {
-        return value;
+    public int read() {
+        synchronized (this) {
+            return value;
+        }
     }
 
-    synchronized public void adjust() {
-        value++;
-        notifyAll();
+    public void adjust() {
+        synchronized (this) {
+            value++;
+            this.notifyAll();
+        }
     }
 
-    synchronized public void await(int value) {
-        while (true) {
+    public void await(int value) {
+        synchronized (this) {
+            while (true) {
 
-            try {
-                wait();
-                System.out.println("Lyginam: " + this.value);
-                if (value == this.value) {
-                    System.out.println("Value found!");
-                    break;
+                try {
+                    this.wait();
+
+                    if (value == this.value) {
+                        System.out.println("Value found!");
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
+
     }
 }

@@ -1,6 +1,15 @@
 package com.hudas;
 
 /**
+ *
+ * Inicializuojamas 0. Turi funkcijas
+ advance() - nedalomai padidinti skaitliuką vienetu;
+ read   () - nuskaityti skaitliuko reiksmę;
+ await  (value) - laukti, kol skaitliuko reiksme nesusilygins
+ su value.
+ Pateikti skaitiklio prasmingą panaudojimą.
+
+
  * Created by Ignas on 2016-10-19.
  */
 public class EntryPoint {
@@ -17,20 +26,9 @@ public class EntryPoint {
         Reception third = new Reception(santariskes);
 
         first.start();
-        System.out.println("Starting...");
-
         second.start();
-        System.out.println("Starting...");
-
         third.start();
-        System.out.println("Starting...");
 
-        // Jeigu susirgs daug pacientu - ligone paskelbs epidejima
         santariskes.notifyEpidemy();
-        System.out.println("Starting...");
-
-
-        // Inspekcija renka viesa ataskaita apie serganciuosius
-
     }
 }

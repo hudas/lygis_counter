@@ -8,7 +8,6 @@ public class HealthInspection extends Thread {
     private Hospital hospital;
 
     public HealthInspection(Hospital hospital) {
-        System.out.println("Inspekcija pradeda darbą.");
         this.hospital = hospital;
     }
 

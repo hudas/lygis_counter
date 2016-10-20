@@ -7,35 +7,25 @@ public class Counter {
 
     private int value;
 
-    public int read() {
-        synchronized (this) {
-            return value;
-        }
+    synchronized public int read() {
+        return value;
     }
 
-    public void adjust() {
-        synchronized (this) {
-            value++;
-            this.notifyAll();
-        }
+    synchronized public void advance() {
+        value++;
+        this.notifyAll();
     }
 
-    public void await(int value) {
-        synchronized (this) {
-            while (true) {
+    synchronized public void await(int value) throws InterruptedException {
+        if (value <= 0) {
+            return;
+        }
 
-                try {
-                    this.wait();
-
-                    if (value == this.value) {
-                        System.out.println("Value found!");
-                        break;
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        while (true) {
+            this.wait();
+            if (value < this.value) {
+                break;
             }
         }
-
     }
 }

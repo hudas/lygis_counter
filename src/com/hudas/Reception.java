@@ -9,6 +9,7 @@ public class Reception extends Thread {
     private Hospital hospital;
 
     public Reception(Hospital hospital) {
+        System.out.println("Registratūra pradeda darbą.");
         this.hospital = hospital;
     }
 

@@ -4,29 +4,34 @@ package com.hudas;
  * Sinchronizuotas objektas - Keltas.
  * Keltas talpina keleivius ir perkelia juos per sąsiaurį.
  */
-public class Hospital {
+public class Hospital extends Thread {
 
     private static final int FLU_EPIDEMY = 250;
+    public static final int PATIENTS_AT_RECEPTION = 1000;
 
 
-    private Counter sickWithFlu = new Counter();
+    private Counter sickCounter;
 
-    public void getReport() {
-//        System.out.println(String.format("Pateikiama ataskaita: gripu serga: %d asmenys", sickWithFlu.read()));
+    public Hospital(Counter sickCounter) {
+        this.sickCounter = sickCounter;
     }
 
     public void treatPatient() {
-        sickWithFlu.advance();
+        sickCounter.advance();
     }
 
-    public void notifyEpidemy() {
-        System.out.println("Laukiama epidemijos...");
-
+    @Override
+    public void run() {
         try {
-            sickWithFlu.await(FLU_EPIDEMY);
-        } catch (InterruptedException e) {
 
+            for(int i = 0; i < PATIENTS_AT_RECEPTION; i++) {
+                treatPatient();
+
+                Thread.currentThread().sleep(1);
+            }
+
+        } catch (InterruptedException e) {
+            System.out.println("Gydytojas išėjo namo");
         }
-        System.out.println(String.format("Gripu serga daugiau nei: %d asmenų skelbiama epidemija.", FLU_EPIDEMY));
     }
 }
